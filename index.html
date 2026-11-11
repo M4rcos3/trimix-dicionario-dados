@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dicionário de Dados · Sorveteria Trimix</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <button id="menuBtn" class="icon-btn" aria-label="Abrir menu de tabelas" aria-controls="sidebar"><span></span><span></span><span></span></button>
+  <div class="scoops" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="titles"><strong>Dicionário de Dados · Sistema de Gestão Operacional e Vendas</strong><span>Sorveteria Trimix</span></div>
+  <button id="themeBtn" class="btn ghost" type="button">Modo escuro</button>
+</header>
+
+<div class="layout">
+  <nav id="sidebar" class="sidebar" aria-label="Navegação por tabelas">
+    <a class="top" href="#identificacao">Identificação do projeto</a>
+    <a class="top" href="#painel">Painel e dicionário</a>
+    <div id="navTabelas"></div>
+    <a class="top" href="#rotinas">Procedures e triggers</a>
+  </nav>
+
+  <main id="main">
+    <section id="identificacao" class="block">
+      <p class="eyebrow">Projeto de Modelagem de Banco de Dados</p>
+      <h1>Identificação do projeto</h1>
+      <div class="two">
+        <article class="card"><h2>Escopo</h2>
+          <p>O Sistema de Gestão Operacional e Vendas substitui o controle informal da Trimix Sorveteria, rede com 4 unidades de atendimento presencial no balcão, por um repositório relacional centralizado. Cobre cadastros (lojas, endereços, categorias, produtos, catálogo por loja e funcionários), vendas com itens, pagamentos e estornos, abertura e fechamento de caixa, movimentação de estoque (transferência entre lojas e baixa por caixa consumida) e segurança e auditoria (controle de acesso por perfil, log somente de inserção e registro de acessos), incluindo a anonimização LGPD de funcionários desligados. Ficam fora da versão 1.0: delivery, documentos fiscais eletrônicos, integração com maquininhas e pix, entrada de mercadorias por fornecedor e conciliação automática de caixa.</p></article>
+        <article class="card"><h2>Tecnologia</h2>
+          <p class="big"><strong>MySQL</strong> Server 8.0 ou superior</p>
+          <p>Engine InnoDB · codificação utf8mb4 · modelagem e script gerados no MySQL Workbench.</p>
+          <dl id="metaList" class="dl"></dl></article>
+      </div>
+      <h2>Responsáveis</h2>
+      <div id="resp" class="grid"></div>
+    </section>
+
+    <section id="painel" class="block">
+      <h1>Dicionário de dados</h1>
+      <div class="panel" role="search">
+        <a class="btn" href="assets/requisitos_trimix.pdf" download>Baixar Especificação de Requisitos (PDF)</a>
+        <button id="derBtn" class="btn" type="button">Abrir DER</button>
+        <label class="search"><span class="sr">Pesquisar tabela ou coluna</span>
+          <input id="search" type="search" placeholder="Pesquisar por tabela ou coluna" autocomplete="off"></label>
+        <span id="count" class="count" aria-live="polite"></span>
+      </div>
+      <p class="legend"><b>[PK]</b> chave primária · <b>[FK]</b> chave estrangeira · <b>[NOT NULL]</b> / <b>[NULL]</b> obrigatoriedade · <b>[UNIQUE]</b> valor único · <b>[DEFAULT]</b> valor padrão · <b>[GERADA]</b> coluna calculada pelo SGBD.</p>
+      <p id="empty" class="card" hidden>Nenhuma tabela ou coluna encontrada para a pesquisa.</p>
+      <div id="dicionario"></div>
+    </section>
+
+    <section id="rotinas" class="block"><h1>Procedures e triggers</h1><div id="procs" class="grid"></div><h2>Triggers</h2><div id="trgs"></div></section>
+    <footer class="foot" id="foot"></footer>
+  </main>
+</div>
+
+<div id="derModal" class="modal" role="dialog" aria-modal="true" aria-label="Diagrama Entidade-Relacionamento" hidden>
+  <div class="stage" id="stage"><img id="derImg" src="assets/der_trimix.png" alt="Diagrama Entidade-Relacionamento do banco trimix_sorveteria" draggable="false"></div>
+  <p class="hint">Role para ampliar ou reduzir · arraste para mover · Esc para fechar</p>
+  <div class="ctrl" role="group" aria-label="Controles de zoom">
+    <button id="zIn" class="btn" type="button" aria-label="Aumentar zoom">Zoom +</button>
+    <button id="zOut" class="btn" type="button" aria-label="Reduzir zoom">Zoom -</button>
+    <button id="zReset" class="btn" type="button">Reset</button>
+    <button id="zClose" class="btn pink" type="button">Fechar</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
